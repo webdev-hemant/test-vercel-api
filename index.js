@@ -12,6 +12,10 @@ const port = process.env.PORT || 4500;
 
 app.use(express.json());
 app.use(cors());
+app.use(
+  "/storage/images",
+  express.static(path.join(__dirname, "storage/images"))
+);
 
 app.get("/", (req, res) => {
   res.send("Hello, Vercel!");
