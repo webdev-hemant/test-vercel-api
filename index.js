@@ -18,7 +18,19 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  res.send("Hello, Vercel!");
+  const directoryPath = path.join(__dirname, "your-directory-name"); // Replace with your directory name
+
+  // Read the contents of the directory
+  fs.readdir(directoryPath, (err, files) => {
+    if (err) {
+      console.error("Unable to scan directory:", err);
+    } else {
+      console.log("Contents of directory:", files);
+    }
+    res.send({message: 'Hello, boss!', files: files.join(', ')})
+  });
+  
+//   res.send("Hello, Vercel!");
 });
 
 app.post("/post", (req, res) => {
