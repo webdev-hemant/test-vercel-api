@@ -26,25 +26,25 @@ app.post("/post", (req, res) => {
 });
 
 app.post("/upload", upload.single("file"), async (req, res) => {
-    try {
-      const fileData = {
-        filename: req.file.filename,
-        originalName: req.file.originalname,
-        path: path.join(__dirname, "storage", req.file.filename),
-        mimeType: req.file.mimetype,
-        size: req.file.size,
-        owner: req.body.owner || "defaultOwner",
-      };
-  
+  try {
+    const fileData = {
+      filename: req.file.filename,
+      originalName: req.file.originalname,
+      path: path.join(__dirname, "storage", req.file.filename),
+      mimeType: req.file.mimetype,
+      size: req.file.size,
+      owner: req.body.owner || "defaultOwner",
+    };
+
     //   const file = await File.create(fileData);
-  
-      res.json({ message: "File uploaded successfully", fileData });
-    } catch (error) {
-      res
-        .status(500)
-        .json({ error: "File upload failed", errorDetails: error.message });
-    }
-  });
+
+    res.json({ message: "File uploaded successfully", fileData });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "File upload failed", errorDetails: error.message });
+  }
+});
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
