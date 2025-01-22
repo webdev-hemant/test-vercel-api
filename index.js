@@ -18,7 +18,7 @@ app.use(
 );
 
 app.get("/", (req, res) => {
-  const directoryPath = path.join(__dirname, "your-directory-name"); // Replace with your directory name
+  const directoryPath = path.join(__dirname, "storage/images"); // Replace with your directory name
 
   // Read the contents of the directory
   fs.readdir(directoryPath, (err, files) => {
